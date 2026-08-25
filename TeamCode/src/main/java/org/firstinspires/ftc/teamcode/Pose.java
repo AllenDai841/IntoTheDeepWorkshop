@@ -30,7 +30,7 @@ public class Pose {
         return new Pose(robotX, robotY, robotHeading);
     }
     @Override
-    public String toString() {
+    public String toString() { //used ai to format the string
         return String.format(
                 "X: %.2f | Y: %.2f | Heading: %.2f°",
                 x,
