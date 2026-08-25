@@ -25,4 +25,38 @@ public class Arm {
         intakeLeft = hardwareMap.get(Servo.class, "intakeLeft");
     }
 
+    public void vertical(int distance, double power){
+        verticalLeft.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        verticalRight.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+
+        verticalLeft.setTargetPosition(distance);
+        verticalRight.setTargetPosition(distance);
+
+        verticalLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        verticalRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
+        verticalLeft.setPower(power);
+        verticalRight.setPower(power);
+    }
+
+    public void armRotate(double position){
+        armRotateLeft.setPosition(position);
+        armRotateRight.setPosition(position);
+    }
+
+    public void extend(double position){
+        armExtend.setPosition(position);
+    }
+
+    public void intake(boolean in){
+        if(in){//this one intakes
+            intakeRight.setPosition(0);//these are placeholder values
+            intakeLeft.setPosition(1);
+        }
+        else{
+            intakeRight.setPosition(1);
+            intakeLeft.setPosition(0);
+        }
+    }
+
 }
