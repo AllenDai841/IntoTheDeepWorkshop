@@ -38,20 +38,9 @@ public class Drive{
     }
     public void goToPose(Pose targetPose, Pose currentPose) {
 
-        double changeX = targetPose.x - currentPose.x;
-        double changeY = targetPose.y - currentPose.y;
-        double changeH = targetPose.heading - currentPose.heading;
-
-        double heading = currentPose.heading;
-
-        double forward = changeX * Math.sin(heading)
-                + changeY * Math.cos(heading);
-
-        double strafe = changeX * Math.cos(heading)
-                - changeY * Math.sin(heading);
-
+        targetPose = targetPose.fieldToRobot(currentPose);
         double constant = 0.05;
 
-        drive(forward * constant, strafe * constant, changeH * constant);
+        drive(targetPose.y * constant, targetPose.x * constant, targetPose.heading * constant);
     }
 }
