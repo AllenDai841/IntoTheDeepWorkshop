@@ -9,6 +9,7 @@ public class teleop_teleop extends OpMode {
     @Override
     public void init() {
         drive = new Drive(hardwareMap);
+        drive.setAllRun();
     }
 
     @Override

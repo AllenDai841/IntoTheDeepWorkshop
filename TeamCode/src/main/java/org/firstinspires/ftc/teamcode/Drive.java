@@ -14,6 +14,9 @@ public class Drive{
         fr = hardwareMap.get(DcMotorEx.class, "fr");
         bl = hardwareMap.get(DcMotorEx.class, "bl");
         br = hardwareMap.get(DcMotorEx.class, "br");
+
+        setAllStop();
+
     }
 
     public void drive(double forward, double strafe, double turn) {
@@ -53,12 +56,29 @@ public class Drive{
 
         drive(forward * constant, strafe * constant, changeH * constant);
     }
+    public void setAllRun(){
+        fl.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        fr.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        bl.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        br.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+    }
+    public void setAllStop(){
+        fl.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        fr.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        bl.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        br.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+    }
 
     public void goForward(double distance, double diameter){//3.747 inches diameter
         fl.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
         fr.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
         bl.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
         br.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
+
+        fl.setPower(0.5);
+        fr.setPower(-0.5);
+        bl.setPower(0.5);
+        br.setPower(-0.5);
     }
 
 }
