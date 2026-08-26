@@ -53,4 +53,12 @@ public class Drive{
 
         drive(forward * constant, strafe * constant, changeH * constant);
     }
+
+    public void goForward(double distance, double diameter){//3.747 inches diameter
+        fl.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
+        fr.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
+        bl.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
+        br.setTargetPosition((int) (distance*360*1.0655/Math.PI/diameter));
+    }
+
 }
